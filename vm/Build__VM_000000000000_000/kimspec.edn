@@ -1,0 +1,10 @@
+{
+    "domain" "openkim.org" 
+    "description" "Attempts to compile a specific model to verify minimal functionality." 
+    "title" "Build" 
+    "extended-id" "Build__VM_000000000000_000" 
+    "disclaimer" ""
+    "pipeline-api-version" "1.0"
+    "kim-api-version" "1.5"
+    "executables" ["runner"]
+}

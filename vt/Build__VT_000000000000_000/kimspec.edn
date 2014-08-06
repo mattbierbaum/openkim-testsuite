@@ -1,0 +1,10 @@
+{
+    "description" "Attempts to compile a specific test to verify minimal functionality."
+    "disclaimer" ''
+    "domain" "openkim.org"
+    "extended-id" "Build__VT_000000000000_000"
+    "title" "Build verification check"
+    "pipeline-api-version" "1.0"
+    "kim-api-version" "1.5"
+    "executables" ["runner"]
+}

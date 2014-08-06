@@ -1,0 +1,11 @@
+{
+    "title"         "PhononDispersionCurve_{{lattice}}_{{symbol}}{# FILENAME = kimspec.edn #}"
+    "test-driver"   "{{TEST_DRIVER_NAME}}"
+    "species"       "{{symbol}}"
+    "extended-id"   "PhononDispersionCurve_{{lattice}}_{{symbol}}__TE_{{kimnum}}_{{version}}"
+    "disclaimer"    "Computer generated"
+    "executables"   ["runner"]
+    "domain"        "openkim.org"
+    "kim-api-version" "1.5"
+    "pipeline-api-version" "1.0"
+}

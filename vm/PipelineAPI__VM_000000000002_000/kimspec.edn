@@ -1,0 +1,10 @@
+{
+    "domain" "openkim.org" 
+    "description" "Attempts to load the model into the kimobjects API used by the pipeline." 
+    "title" "PipelineAPI" 
+    "extended-id" "PipelineAPI__VM_000000000002_000" 
+    "disclaimer" ""
+    "pipeline-api-version" "1.0"
+    "kim-api-version" "1.5"
+    "executables" ["runner"]
+}

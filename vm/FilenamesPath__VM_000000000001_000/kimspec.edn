@@ -1,0 +1,10 @@
+{
+    "domain" "openkim.org" 
+    "description" "Checks that a model contains the files required to run in the pipeline." 
+    "title" "FilenamesPath" 
+    "extended-id" "FilenamesPath__VM_000000000001_000" 
+    "disclaimer" ""
+    "pipeline-api-version" "1.0"
+    "kim-api-version" "1.5"
+    "executables" ["runner"]
+}

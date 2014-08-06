@@ -1,0 +1,33 @@
+{# FILENAME = descriptor.kim #}
+TEST_NAME := {{kimspec['extended-id']}}
+Unit_Handling := flexible
+Unit_length :=A
+Unit_energy :=eV
+Unit_charge :=e
+Unit_temperature :=K
+Unit_time :=ps
+
+SUPPORTED_AOM/PARTICLES_TYPES:
+{{symbol}} spec 26
+
+CONVENTIONS:
+ZeroBasedLists  flag
+Neigh_LocaAccess  flag
+Neigh_IterAccess  flag
+NEIGH_RVEC_F flag
+
+MODEL_INPUT:
+numberOfParticles  integer  none  []
+numberParticleTypes  integer  none  []
+particleTypes  integer  none  [numberOfParticles]
+coordinates  double  length  [numberOfParticles,3]
+get_neigh  method  none []
+neighObject  pointer  none  []
+
+MODEL_OUTPUT:
+compute  method  none  []
+reinit  method  none  []
+destroy  method  none  []
+cutoff  double  length  []
+energy  double  energy  []
+

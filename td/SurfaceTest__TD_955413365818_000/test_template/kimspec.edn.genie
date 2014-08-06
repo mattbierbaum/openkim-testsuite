@@ -1,0 +1,11 @@
+{
+    "title"         "SurfaceTest_{{lattice}}_{{symbol}}{# FILENAME = kimspec.edn #}"
+    "test-driver"   "{{TEST_DRIVER_NAME}}"
+    "species"       "{{symbol}}"
+    "extended-id"   "SurfaceTest_{{lattice}}_{{symbol}}__TE_{{kimnum}}_{{version}}"
+    "disclaimer"    "Computer generated"
+    "domain"        "openkim.org"
+    "executables"   ["runner"]
+    "kim-api-version" "1.5"
+    "pipeline-api-version" "1.0"
+}

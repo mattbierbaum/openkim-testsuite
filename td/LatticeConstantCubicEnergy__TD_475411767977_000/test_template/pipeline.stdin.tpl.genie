@@ -1,0 +1,4 @@
+@< path("{{TEST_DRIVER_NAME}}") >@ {# FILENAME = pipeline.stdin.tpl #}
+{{symbol}}
+{{lattice}}
+@< MODELNAME >@

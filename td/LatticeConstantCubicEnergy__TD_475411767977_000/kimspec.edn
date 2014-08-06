@@ -1,0 +1,10 @@
+{
+    "description"   "Calculates lattice constant by minimizing energy function"
+    "domain"        "openkim.org"
+    "extended-id"   "LatticeConstantCubicEnergy__TD_475411767977_000"
+    "title"         "LatticeConstantCubicEnergy"
+    "executables"   ["runner" "test_template/runner"]
+    "kim-api-version" "1.5"
+    "pipeline-api-version" "1.0"
+    "properties"    ["tag:staff@noreply.openkim.org,2014-04-15:property/structure-cubic-crystal-npt" "tag:staff@noreply.openkim.org,2014-04-15:property/cohesive-potential-energy-cubic-crystal"]
+}

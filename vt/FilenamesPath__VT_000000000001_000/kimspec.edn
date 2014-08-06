@@ -1,0 +1,10 @@
+{
+    "description" "Checks that a test contains the files required to run in the pipeline."
+    "disclaimer" ''
+    "domain" "openkim.org"
+    "extended-id" "FilenamesPath__VT_000000000001_000"
+    "title" "FilenamesPath"
+    "pipeline-api-version" "1.0"
+    "kim-api-version" "1.5"
+    "executables" ["runner"]
+}

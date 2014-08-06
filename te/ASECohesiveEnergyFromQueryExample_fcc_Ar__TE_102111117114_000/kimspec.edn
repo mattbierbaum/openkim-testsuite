@@ -1,0 +1,11 @@
+{
+    "extended-id" "ASECohesiveEnergyFromQueryExample_fcc_Ar__TE_102111117114_000" 
+    "domain" "openkim.org" 
+    "title" "ASE cohesive energy test example" 
+    "species" ["Ar"]
+    "executables" ["runner"]
+    "disclaimer" "Tutorial test using the Atomic Simulation Environment which calculates the cohesive energy"
+    "kim-api-version" "1.5"
+    "pipeline-api-version" "1.0"
+    "properties" ["tag:staff@noreply.openkim.org,2014-04-15:property/cohesive-potential-energy-cubic-crystal"]
+}

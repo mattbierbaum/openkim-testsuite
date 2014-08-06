@@ -1,0 +1,2 @@
+@< MODELNAME >@
+@< path(MODELNAME) >@
