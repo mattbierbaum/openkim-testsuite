@@ -26,13 +26,12 @@ os.chdir(directory)
 title = "Proper files exist and executable bit set"
 critical = True
 passed = True
-msg = ""
-warn = ""
+errors = []
 
 def fail(reason):
-    global msg, passed
+    global errors, passed
     passed = False
-    msg += reason+"\n"
+    errors.append(reason)
 
 def file_contains(filename, pattern):
     matcher = re.compile(pattern)
@@ -63,9 +62,9 @@ if not os.path.isfile("Makefile"):
 os.chdir(here)
 results = {
     "property-id": "tag:staff@noreply.openkim.org,2014-08-05:property/verification-check",
+    "instance-id": 1,
     "passed": passed,
-    "message": msg,
-    "warning": warn,
+    "errors": errors,
     "critical": critical,
     "title": title
 }
