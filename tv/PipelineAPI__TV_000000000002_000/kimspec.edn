@@ -2,9 +2,9 @@
     "domain" "openkim.org" 
     "description" "Attempts to load the test into the kimobjects API used by the pipeline." 
     "title" "PipelineAPI" 
-    "extended-id" "PipelineAPI__VT_000000000002_000" 
+    "extended-id" "PipelineAPI__TV_000000000002_000" 
     "disclaimer" ""
     "pipeline-api-version" "1.0"
-    "kim-api-version" "1.5"
+    "kim-api-version" "1.6"
     "executables" ["runner"]
 }

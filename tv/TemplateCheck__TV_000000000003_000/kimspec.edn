@@ -2,9 +2,9 @@
     "domain" "openkim.org" 
     "description" "Checks that the tests template is valid." 
     "title" "TemplateCheck" 
-    "extended-id" "TemplateCheck__VT_000000000003_000" 
+    "extended-id" "TemplateCheck__TV_000000000003_000" 
     "disclaimer" ""
     "pipeline-api-version" "1.0"
-    "kim-api-version" "1.5"
+    "kim-api-version" "1.6"
     "executables" ["runner"]
 }
