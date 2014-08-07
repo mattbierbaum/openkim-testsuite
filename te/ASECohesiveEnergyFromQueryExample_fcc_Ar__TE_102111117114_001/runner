@@ -1,0 +1,55 @@
+#!/usr/bin/env python
+"""
+ASE cohesive energy example test with dependencies
+
+Date: 2014/08/05
+Author: Matt Bierbaum
+"""
+from ase.structure import bulk
+from kimcalculator import KIMCalculator
+from string import Template
+import os
+
+#grab from stdin (or a file)
+model = raw_input("modelname=")
+lattice_constant = raw_input("lattice constant=")
+lattice_constant = 10**10 * float(lattice_constant)
+
+# calculate the cohesive energy
+calc = KIMCalculator(model)
+slab = bulk('Ar', 'fcc', a=lattice_constant)
+slab.set_calculator(calc)
+energy = -slab.get_potential_energy()
+
+# pack the results in a dictionary
+results = {'lattice_constant': lattice_constant,
+            'cohesive_energy': energy}
+
+output = Template("""
+[{
+    "property-id" "tag:staff@noreply.openkim.org,2014-04-15:property/cohesive-potential-energy-cubic-crystal"
+    "instance-id" 0
+    "short-name" {
+        "source-value"  ["fcc"]
+    }
+    "species" {
+        "source-value"  ["Ar"]
+    }
+    "a" {
+        "source-value"  $lattice_constant
+        "source-unit"   "angstrom"
+    }
+    "basis-atom-coordinates" {
+        "source-value"  [[0.0 0.0 0.0] [0.0 0.5 0.5] [0.5 0.0 0.5] [0.5 0.5 0.0]]
+    }
+    "space-group" {
+        "source-value"  "Fm-3m"
+    }
+    "cohesive-potential-energy" {
+        "source-value"  $cohesive_energy
+        "source-unit"   "eV"
+    }
+}]""").substitute(**results)
+
+with open(os.path.abspath("output/results.edn"), "w") as f:
+    f.write(output)
