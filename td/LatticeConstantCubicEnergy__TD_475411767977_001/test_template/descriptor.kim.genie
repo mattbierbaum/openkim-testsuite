@@ -8,7 +8,7 @@ Unit_charge :=e
 Unit_temperature :=K
 Unit_time :=ps
 
-SUPPORTED_AOM/PARTICLES_TYPES:
+PARTICLE_SPECIES:
 {{symbol}} spec 26
 
 CONVENTIONS:
