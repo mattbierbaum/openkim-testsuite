@@ -1,0 +1,2 @@
+{# FILENAME = dependencies.edn #}
+[ {{ query({"project": ["shortcode"], "query": {"kimcode": {"$options": "", "$regex": "Lattice.*"+lattice+".*"+symbol+".*"}}, "limit": 1, "database": "obj"}) }} ]
