@@ -2,7 +2,7 @@
     "description" "Checks that a test contains the files required to run in the pipeline."
     "disclaimer" ''
     "domain" "openkim.org"
-    "extended-id" "FilenamesPath__TV_000000000001_000"
+    "extended-id" "FilenamesPath__TV_100000000001_000"
     "title" "FilenamesPath"
     "pipeline-api-version" "1.0"
     "kim-api-version" "1.6"

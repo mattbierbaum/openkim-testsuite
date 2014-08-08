@@ -1,7 +1,7 @@
 {
     "description"   "Calculates lattice constant by minimizing energy function"
     "domain"        "openkim.org"
-    "extended-id"   "LatticeConstantCubicEnergy__TD_475411767977_000"
+    "extended-id"   "LatticeConstantCubicEnergy__TD_475411767977_001"
     "title"         "LatticeConstantCubicEnergy"
     "executables"   ["runner" "test_template/runner"]
     "kim-api-version" "1.6"

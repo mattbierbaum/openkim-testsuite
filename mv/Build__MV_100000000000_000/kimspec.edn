@@ -2,7 +2,7 @@
     "domain" "openkim.org" 
     "description" "Attempts to compile a specific model to verify minimal functionality." 
     "title" "Build" 
-    "extended-id" "Build__MV_000000000000_000" 
+    "extended-id" "Build__MV_100000000000_000" 
     "disclaimer" ""
     "pipeline-api-version" "1.0"
     "kim-api-version" "1.6"

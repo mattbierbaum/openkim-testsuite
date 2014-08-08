@@ -28,7 +28,7 @@ def BrokenBondBCC(params, x, y, z):\n
 
 
     "domain"        "openkim.org"
-    "extended-id"   "SurfaceTest__TD_955413365818_000"
+    "extended-id"   "SurfaceTest__TD_955413365818_001"
     "title"         "SurfaceTest"
     "kim-api-version" "1.6"
     "pipeline-api-version" "1.0"

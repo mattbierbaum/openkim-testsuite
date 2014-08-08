@@ -2,7 +2,7 @@
     "domain" "openkim.org" 
     "description" "Checks that a model contains the files required to run in the pipeline." 
     "title" "FilenamesPath" 
-    "extended-id" "FilenamesPath__MV_000000000001_000" 
+    "extended-id" "FilenamesPath__MV_100000000001_000" 
     "disclaimer" ""
     "pipeline-api-version" "1.0"
     "kim-api-version" "1.6"

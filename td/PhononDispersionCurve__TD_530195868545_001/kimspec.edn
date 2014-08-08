@@ -1,6 +1,6 @@
 {
     "domain"        "openkim.org"
-    "extended-id"   "PhononDispersionCurve__TD_530195868545_000"
+    "extended-id"   "PhononDispersionCurve__TD_530195868545_001"
     "title"         "PhononDispersionCurve"
     "description"   "Calculates the phonon dispersion curve for fcc lattices and records the result as a curve."
     "executables"   ["runner" "test_template/runner"]
