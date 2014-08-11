@@ -1,6 +1,6 @@
 {
     "description" "Attempts to compile a specific test to verify minimal functionality."
-    "disclaimer" ''
+    "disclaimer"  ""
     "domain" "openkim.org"
     "extended-id" "Build__TV_100000000000_000"
     "title" "Build verification check"
