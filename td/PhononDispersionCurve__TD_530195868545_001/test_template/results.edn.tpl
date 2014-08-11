@@ -81,6 +81,7 @@
     }
     "response-frequency" {
         "source-value"  @<kpoint.frequency|json>@
+        "source-unit"   "meV"
     }
 }
 @[ endfor ]@
