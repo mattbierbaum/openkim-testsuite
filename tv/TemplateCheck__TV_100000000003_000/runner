@@ -28,11 +28,16 @@ def fail(reason):
 import kimobjects
 import template 
 test = kimobjects.Test(modelname)
-model = next(kimobjects.Model.all())
+
+try:
+    model = next(kimobjects.Model.all())
+except Exception as e:
+    fail("No model present to attempt templating")
+
 try:
     test.processed_infile(model)
 except Exception as e:
-    fail("pipeline.in could not be templated by Pipeline API: %r"% e)
+    fail("pipeline.stdin could not be templated by Pipeline API: %r"% e)
 
 os.chdir(here)
 results = {

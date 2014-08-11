@@ -43,18 +43,15 @@ def file_contains(filename, pattern):
                 return True
     return False
 
-sharedobj = modelname+".so"
+sharedobj = "libkim-api-model-v1.so"
 if not os.path.isfile(sharedobj):
     fail("Executable " + sharedobj + " does not exist.")
 if not os.access(sharedobj, os.X_OK):
     fail("File " + sharedobj + " is not executable.")
 
-kimfile = modelname+".kim"
+kimfile = "descriptor.kim"
 if not os.path.isfile(kimfile):
     fail("KIM file " + kimfile + " does not exist.")
-#else:
-#    if not file_contains(kimfile, r'MODEL_NAME\s*:=\s*'+modelname):
-#        fail("KIM file contains inappropriate MODEL_NAME parameter.")
 
 if not os.path.isfile("Makefile"):
     fail("No Makefile provided by test.")

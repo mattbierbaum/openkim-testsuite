@@ -35,7 +35,7 @@ except Exception as e:
 os.chdir(here)
 results = {
     "property-id": "tag:staff@noreply.openkim.org,2014-08-05:property/verification-check",
-    "instance-id": 1
+    "instance-id": 1,
     "passed": passed,
     "errors": errors,
     "critical": critical,

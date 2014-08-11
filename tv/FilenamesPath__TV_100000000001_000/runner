@@ -43,16 +43,14 @@ def file_contains(filename, pattern):
                 return True
     return False
 
-if not os.path.isfile(modelname):
+if not os.path.isfile('runner'):
     fail("Executable " + modelname + " does not exist.")
-if not os.access(modelname, os.X_OK):
+if not os.access('runner', os.X_OK):
     fail("File " + modelname + " is not executable.")
 
-kimfile = modelname+".kim"
+kimfile = "descriptor.kim"
 if not os.path.isfile(kimfile):
     fail("KIM file " + kimfile + " does not exist.")
-#if not file_contains(kimfile, r'TEST_NAME\s*:=\s*'+modelname):
-#    fail("KIM file contains inappropriate TESTNAME parameter.")
 
 if not os.path.isfile("pipeline.stdin.tpl"):
     fail("No pipeline.stdin.tpl provided by test.")
