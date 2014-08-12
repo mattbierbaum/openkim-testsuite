@@ -20,7 +20,7 @@
     }
     "temperature" {
         "source-value"  0
-        "source-unit"   "angstrom"
+        "source-unit"   "K"
     }
     "cauchy-stress" {
         "source-value"  [0 0 0 0 0 0]

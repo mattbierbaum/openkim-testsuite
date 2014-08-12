@@ -51,7 +51,7 @@
 
 {
     "property-id" "tag:staff@noreply.openkim.org,2014-04-15:property/bulk-modulus-isothermal-cubic-crystal-npt"
-    "property-id" 2  
+    "instance-id" 2
 
     "short-name" {
         "source-value"  ["@<crystal_structure>@"]
