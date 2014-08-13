@@ -28,7 +28,7 @@ results = {'lattice_constant': lattice_constant,
 output = Template("""
 [{
     "property-id" "tag:staff@noreply.openkim.org,2014-04-15:property/cohesive-potential-energy-cubic-crystal"
-    "instance-id" 0
+    "instance-id" 1
     "short-name" {
         "source-value"  ["fcc"]
     }
