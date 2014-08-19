@@ -53,50 +53,58 @@ def energy(a, slab, cell, positions):
 
 def get_lattice_constant(model, symbol, lattice):
     cutoff, nbcname = run_get_cutoff(model)
-    
+
     calc = KIMCalculator(model)
     repeat = 0
 
-    if nbcname == "NEIGH_RVEC_F":
+    if nbcname == "NEIGH_RVEC_F" or nbcname == "NEIGH_RVEC_H":
         slab = bulk(symbol, lattice, a=1)
         cell = slab.get_cell()
         positions = slab.get_positions()
         slab.set_calculator(calc)
-   
+
         particles = len(slab)
 
-    if nbcname == "NEIGH_PURE_F":
+    if nbcname == "NEIGH_PURE_F" or nbcname == "NEIGH_PURE_H":
         # now that we have the cutoff, actually do some calcs
         smallslab = bulk(symbol, lattice, a=1, cubic=True)
         repeat = int(cutoff+0.5)+1
         slab = smallslab.repeat((repeat,)*3)
         cell = slab.get_cell()
         positions = slab.get_positions()
-    
+
         # find the only atom that matters
         center = positions[-1]/2
         atom = np.argmin(np.sum((positions-center)**2, axis=-1))
+
+        # move that to the front of the list
+        tmp = np.copy(positions[atom])
+        positions[atom] = np.copy(positions[0])
+        positions[0] = tmp
+
+        # set the ghost to be that first atom
         ghosts = np.ones(positions.shape[0], dtype='int8')
-        ghosts[atom] = 0
-    
+        ghosts[0] = 0
+
         # set up the ghosts with the calculator
+        slab.set_positions(positions)
         slab.set_calculator(calc)
         slab.set_pbc([0,0,0])
         calc.set_ghosts(ghosts)
-   
+
         particles = 1
 
-    if nbcname == "MI_OPBC_F":
+    if nbcname == "MI_OPBC_F" or nbcname == "MI_OPBC_H":
         # now that we have the cutoff, actually do some calcs
         smallslab = bulk(symbol, lattice, a=1, cubic=True)
         repeat = int(cutoff+0.5)+1
         slab = smallslab.repeat((repeat,)*3)
         cell = slab.get_cell()
         positions = slab.get_positions()
-        
+
         # work with slab from now on
         slab.set_calculator(calc)
-   
+
         particles = len(slab)
 
     aopt_arr, eopt, iterations, funccalls, warnflag = opt.fmin(energy, cutoff/2.0, args=(slab,cell,positions), full_output=True, xtol=1e-8)
@@ -120,11 +128,11 @@ if __name__ == "__main__":
 
     space_groups = {"fcc": "Fm-3m", "bcc": "Im-3m", "sc": "Pm-3m", "diamond": "Fd-3m"}
     wyckoff_codes = {"fcc": "4a", "bcc": "2a", "sc": "1a", "diamond": "8a"}
-    normed_basis = { 
+    normed_basis = {
           lattice: json.dumps(bulk(symbol, lattice, a=1, cubic=True).positions.tolist(), separators=(' ', ' '))
-          for lattice in space_groups.keys() 
+          for lattice in space_groups.keys()
         }
-    
+
     # pack the results in a dictionary
     results = {"lattice_constant": aopt,
                 "cohesive_energy": eopt,
@@ -134,7 +142,7 @@ if __name__ == "__main__":
                 "wyckoff_code": wyckoff_codes[lattice],
                 "basis_atoms": normed_basis[lattice]}
     results.update(info)
-   
+
     template_environment = jinja2.Environment(
         loader=jinja2.FileSystemLoader('/'),
         block_start_string='@[',
@@ -145,7 +153,7 @@ if __name__ == "__main__":
         comment_end_string='#@',
         undefined=jinja2.StrictUndefined,
         )
- 
+
     #template the EDN output
     with open(os.path.abspath("output/results.edn"), "w") as f:
         template = template_environment.get_template(os.path.abspath("results.edn.tpl"))
