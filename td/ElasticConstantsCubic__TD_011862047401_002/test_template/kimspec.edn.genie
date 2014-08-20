@@ -1,0 +1,12 @@
+{
+    "title"         "ElasticConstantsCubic_{{lattice}}_{{symbol}}{# FILENAME = kimspec.edn #}"
+    "test-driver"   "{{TEST_DRIVER_NAME}}"
+    "species"       "{{symbol}}"
+    "extended-id"   "ElasticConstantsCubic_{{lattice}}_{{symbol}}__TE_{{kimnum}}_{{version}}"
+    "disclaimer"    "Computer generated"
+    "domain"        "openkim.org"
+    "executables"   ["runner"]
+    "source-citations"  "J. B. Huntington, in Solid State Physics, edited by F. Seitz and D. Turnbull (Academic, New York, 1958), Vol. 7."
+    "kim-api-version" "1.6"
+    "pipeline-api-version" "1.0"
+}

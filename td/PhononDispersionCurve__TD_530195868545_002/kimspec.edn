@@ -1,0 +1,10 @@
+{
+    "domain"        "openkim.org"
+    "extended-id"   "PhononDispersionCurve__TD_530195868545_002"
+    "title"         "PhononDispersionCurve"
+    "description"   "Calculates the phonon dispersion curve for fcc lattices and records the result as a curve."
+    "executables"   ["runner" "test_template/runner"]
+    "kim-api-version" "1.6"
+    "pipeline-api-version" "1.0"
+    "properties"    ["tag:staff@noreply.openkim.org,2014-05-21:property/phonon-dispersion-dos-cubic-crystal-npt" "tag:staff@noreply.openkim.org,2014-05-21:property/phonon-dispersion-relation-cubic-crystal-npt"]
+}

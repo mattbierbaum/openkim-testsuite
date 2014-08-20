@@ -1,0 +1,12 @@
+{
+    "description"   "Measures the cubic elastic constants for some common crystal types (fcc, bcc, sc) by calculating the hessian of the energy density with respect to strain.  Error estimate is reported due to the numerical differentiation."
+    "disclaimer"    "Computes elastic constants with numerical deriviatives of the strain of the unit cell."
+    "domain"        "openkim.org"
+    "extended-id"   "ElasticConstantsCubic__TD_011862047401_002"
+    "title"         "Elastic constants for cubic crystals"
+    "executables"   ["runner" "test_template/runner"]
+    "source-citations"  "J. B. Huntington, in Solid State Physics, edited by F. Seitz and D. Turnbull (Academic, New York, 1958), Vol. 7."
+    "kim-api-version" "1.6"
+    "pipeline-api-version" "1.0"
+    "properties" ["tag:staff@noreply.openkim.org,2014-05-21:property/elastic-constants-isothermal-cubic-crystal-npt" "tag:staff@noreply.openkim.org,2014-04-15:property/bulk-modulus-isothermal-cubic-crystal-npt"]
+}
