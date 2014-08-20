@@ -16,11 +16,8 @@ ZeroBasedLists  flag
 Neigh_LocaAccess  flag
 Neigh_IterAccess  flag
 NEIGH_RVEC_F flag
-NEIGH_RVEC_H flag
 NEIGH_PURE_F flag
-NEIGH_PURE_H flag
 MI_OPBC_F flag
-MI_OPBC_H flag
 
 MODEL_INPUT:
 numberOfParticles  integer  none  []
@@ -30,7 +27,6 @@ coordinates  double  length  [numberOfParticles,3]
 get_neigh  method  none []
 neighObject  pointer  none  []
 boxSideLengths double length [3]
-numberContributingParticles integer none []
 
 MODEL_OUTPUT:
 compute  method  none  []
