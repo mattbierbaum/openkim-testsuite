@@ -30,6 +30,7 @@ coordinates  double  length  [numberOfParticles,3]
 get_neigh  method  none []
 neighObject  pointer  none  []
 boxSideLengths double length [3]
+numberContributingParticles integer none []
 
 MODEL_OUTPUT:
 compute  method  none  []
