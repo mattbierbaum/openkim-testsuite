@@ -1,0 +1,36 @@
+KIM_API_Version := 1.6.0
+
+Unit_length := A
+Unit_energy := eV
+Unit_charge := e
+Unit_temperature := K
+Unit_time := ps
+
+PARTICLE_SPECIES: 
+Al spec 1
+
+CONVENTIONS:
+ZeroBasedLists  flag
+Neigh_LocaAccess flag
+Neigh_IterAccess flag
+Neigh_BothAccess flag
+#None flag
+CLUSTER flag 
+
+MODEL_INPUT:
+numberOfParticles  integer  none  []
+numberOfSpecies integer  none  []
+particleSpecies  integer  none  [numberOfParticles]
+coordinates  double  length  [numberOfParticles,3]
+numberContributingParticles  integer  none  []
+boxSideLengths  double  length  [3]
+get_neigh  method  none []
+neighObject  pointer  none  []
+
+MODEL_OUTPUT: 
+compute  method  none  []
+reinit  method  none  []
+destroy  method  none  []
+cutoff  double  length  []
+energy  double  energy  []
+particleEnergy  double  energy  [numberOfParticles]

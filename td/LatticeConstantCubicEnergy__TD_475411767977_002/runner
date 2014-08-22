@@ -24,7 +24,7 @@ import sys
 def get_cutoff(model, q=None):
     """ Attempt to read the cutoff of the model and NBL type """
     calc = KIMCalculator(model)
-    slab = bulk(symbol, lattice, a=1)
+    slab = bulk(symbol, lattice, a=1, cubic=True)
     slab.set_calculator(calc)
     cutoff = KIM_API_get_data_double(calc.pkim, "cutoff")[0]
     nbcname = calc.get_NBC_method()
@@ -68,7 +68,7 @@ def get_lattice_constant(model, symbol, lattice):
     if nbcname == "NEIGH_PURE_F" or nbcname == "NEIGH_PURE_H":
         # now that we have the cutoff, actually do some calcs
         smallslab = bulk(symbol, lattice, a=1, cubic=True)
-        repeat = int(cutoff+0.5)+1
+        repeat = 2*int(np.ceil(cutoff)+0.5)+1
         slab = smallslab.repeat((repeat,)*3)
         cell = slab.get_cell()
         positions = slab.get_positions()
@@ -97,7 +97,7 @@ def get_lattice_constant(model, symbol, lattice):
     if nbcname == "MI_OPBC_F" or nbcname == "MI_OPBC_H":
         # now that we have the cutoff, actually do some calcs
         smallslab = bulk(symbol, lattice, a=1, cubic=True)
-        repeat = int(cutoff+0.5)+1
+        repeat = 2*int(np.ceil(cutoff)+0.5) + 1
         slab = smallslab.repeat((repeat,)*3)
         cell = slab.get_cell()
         positions = slab.get_positions()
