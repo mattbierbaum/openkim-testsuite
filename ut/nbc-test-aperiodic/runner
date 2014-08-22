@@ -9,31 +9,17 @@ from string import Template
 import itertools
 import numpy as np
 
-def get_cutoff(model, q=None):
-    """ Attempt to read the cutoff of the model and NBL type """
+def get_species(model, q=None):
+    """ Attempt to read the speices of the model """
     status, pkim = ks.KIM_API_model_info(model)
     ks.KIM_API_get_NBC_method(pkim)
     nspecies = ks.KIM_API_get_num_model_species(pkim)
-    species = [ks.KIM_API_get_model_species(pkim, i) for i in xrange(nspecies)]
-
-    nbc = 'NEIGH_RVEC_F' #ks.KIM_API_get_NBC_method(pkim)
-    slab = bulk(species[0], 'fcc', cubic=True)
-    kstr = str(template_descriptor(species[0], nbc, 'Neigh_IterAccess'))
-    slab.set_calculator(KIMCalculator(model, search=False, kimfile='./temp-descriptor.kim'))
-
-    cutoff = ks.KIM_API_get_data_double(slab.calc.pkim, "cutoff")[0]
-    return (cutoff, species)
-
-list_iterloca = [
-    "Neigh_LocaAccess",
-    "Neigh_IterAccess",
-    "Neigh_BothAccess"
-]
+    return [ks.KIM_API_get_model_species(pkim, i) for i in xrange(nspecies)]
 
 list_nbcs = [
     "NEIGH_RVEC_F", "NEIGH_RVEC_H",
     "NEIGH_PURE_F", "NEIGH_PURE_H",
-    "MI_OPBC_F", "MI_OPBC_H",
+    #"MI_OPBC_F", #"MI_OPBC_H",
     "CLUSTER"
 ]
 
@@ -51,8 +37,7 @@ def template_descriptor(species, nbc, iterloca):
             )
         )
 
-def generate_slab(species, struct):
-    N = 2
+def generate_slab(species, struct, N=3):
     slab = bulk(species, struct, cubic=True)
     slab = slab.repeat((N,N,N))
     slab.set_pbc((0,0,0))
@@ -78,22 +63,20 @@ if __name__ == "__main__":
     #model = "Pair_Morse_Shifted_GirifalcoWeizer_MedCutoff_Cr__MO_245813471114_001"
     #model = "Three_Body_Stillinger_Weber_Balamane_Si__MO_113686039439_001"
     #model = "Tersoff_LAMMPS_Erhart_Albe_CSi__MO_903987585848_001"
-    cutoff, species = get_cutoff(model)
 
-    print "Running for cutoff %f, and species %r" % (cutoff, species)
+    species = get_species(model)
+    print "Running for species %r" % species
     
     result = {}
     for (sp,struct) in itertools.product(species, structures):
-        slab = generate_slab(sp, struct)
-        print "Using %i atoms..." % len(slab)
-
+        slab = generate_slab(sp, struct, 8)
         for nbc in list_nbcs:
+            print "Running", sp, struct, nbc
             try:
                 energy = run_energy(slab, nbc=nbc)
             except:
                 energy = "<none>"
             result[(sp,struct,nbc)] = (len(slab), energy)
-            print sp,'\t', struct, '\t', nbc, '\t', energy
 
     for (sp,struct) in itertools.product(species, structures):
         slab = generate_slab(sp, struct)
