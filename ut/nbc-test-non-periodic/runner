@@ -19,12 +19,12 @@ def get_species(model, q=None):
 list_nbcs = [
     "NEIGH_RVEC_F", "NEIGH_RVEC_H",
     "NEIGH_PURE_F", "NEIGH_PURE_H",
-    #"MI_OPBC_F", #"MI_OPBC_H",
+    "MI_OPBC_F", #"MI_OPBC_H",
     "CLUSTER"
 ]
 
 structures = [
-    "sc", "fcc", "bcc", "diamond",
+    'fcc', #"sc", "fcc", "bcc", "diamond",
 ]
 
 def template_descriptor(species, nbc, iterloca):
@@ -42,6 +42,10 @@ def generate_slab(species, struct, N=3):
     slab = slab.repeat((N,N,N))
     slab.set_pbc((0,0,0))
     slab.rattle(stdev=0.1)
+
+    L = slab.get_cell()[0,0]
+    p = slab.get_positions()
+    slab.set_positions(np.clip(p, 0, L))
     return slab
 
 def run_energy(slab, nbc=None, iterloca=None):
@@ -52,6 +56,10 @@ def run_energy(slab, nbc=None, iterloca=None):
 
     if "PURE" in nbc:
         calc.set_ghosts(np.zeros(len(slab), dtype='int8')) 
+
+    if "OPBC" in nbc:
+        slab.set_cell(slab.get_cell()*100)
+        slab.set_positions(slab.get_positions()+50)
 
     return -slab.get_potential_energy()
 
@@ -69,7 +77,7 @@ if __name__ == "__main__":
     
     result = {}
     for (sp,struct) in itertools.product(species, structures):
-        slab = generate_slab(sp, struct, 8)
+        slab = generate_slab(sp, struct, 3)
         for nbc in list_nbcs:
             print "Running", sp, struct, nbc
             try:
