@@ -24,7 +24,7 @@ list_nbcs = [
 ]
 
 structures = [
-    'fcc', #"sc", "fcc", "bcc", "diamond",
+    "sc", "fcc", "bcc", "diamond",
 ]
 
 def template_descriptor(species, nbc, iterloca):
