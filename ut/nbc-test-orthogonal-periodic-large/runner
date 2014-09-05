@@ -17,13 +17,13 @@ def get_species(model, q=None):
     return [ks.KIM_API_get_model_species(pkim, i) for i in xrange(nspecies)]
 
 list_nbcs = [
-    "NEIGH_RVEC_F", #"NEIGH_RVEC_H",
-    "NEIGH_PURE_F", #"NEIGH_PURE_H",
-    #"MI_OPBC_F", "MI_OPBC_H",
+    "NEIGH_RVEC_F", "NEIGH_RVEC_H",
+    "NEIGH_PURE_F", "NEIGH_PURE_H",
+    "MI_OPBC_F", "MI_OPBC_H",
 ]
 
 structures = [
-    "sc", #"fcc", "bcc", "diamond",
+    "sc", "fcc", "bcc", "diamond",
 ]
 
 def template_descriptor(species, nbc, iterloca):
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     
     result = {}
     for (sp,struct) in itertools.product(species, structures):
-        slab = generate_slab(sp, struct, 7)
+        slab = generate_slab(sp, struct, 9)
         for nbc in list_nbcs:
             print "Running", sp, struct, nbc
             try:
