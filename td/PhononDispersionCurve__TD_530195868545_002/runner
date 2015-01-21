@@ -130,6 +130,7 @@ normed_basis = {
     for lattice in space_groups.keys() 
 }
 
+curr = 0
 for j in xrange(len(omega_kn[0])):
     kpoints.append({
         "wavenumber": list(q), 
@@ -137,8 +138,9 @@ for j in xrange(len(omega_kn[0])):
         "branch_label": branches[j], 
         "iter": j+1,
     })
+    curr = j+1
 
-DOS.append({"energy": list(omega_e), "density": list(dos_e), "iter": 0})
+DOS.append({"energy": list(omega_e), "density": list(dos_e), "iter": curr+1})
 
 results = {
     "wavevector": np.array(path_kc).tolist(),

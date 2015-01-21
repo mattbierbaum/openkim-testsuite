@@ -242,13 +242,13 @@ energies = []
 lastindex = 0
 for item, (key,val) in enumerate(surfaceEnergyDict.iteritems()):
     energies.append({
-        "index": item,
+        "index": item+1,
         "miller_index": key, 
         "surface_energy": val, 
         "surface": surfaceVectorDict[key],
         "positions": surfaceP0[key].tolist(),
     })
-    lastindex = item
+    lastindex = item+1
 
 unrelaxedenergies = []
 for item, (key,val) in enumerate(surfaceEnergyUnrelaxed.iteritems()):
