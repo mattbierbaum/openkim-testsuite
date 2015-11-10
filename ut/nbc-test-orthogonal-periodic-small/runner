@@ -19,6 +19,7 @@ def get_species(model, q=None):
 list_nbcs = [
     "NEIGH_RVEC_F", "NEIGH_RVEC_H",
     "NEIGH_PURE_F", "NEIGH_PURE_H",
+    "MI_OPBC_F", "MI_OPBC_H"
 ]
 
 structures = [
@@ -48,6 +49,7 @@ def generate_slab(species, struct, N=3):
 def run_energy(slab, nbc=None, iterloca=None):
     template_descriptor(slab.get_chemical_symbols()[0], nbc, iterloca)
 
+    factor = 1
     calc = KIMCalculator(model, kimfile='./temp-descriptor.kim')
     slab.set_calculator(calc)
 
@@ -63,14 +65,20 @@ def run_energy(slab, nbc=None, iterloca=None):
         p[14*N:] = copy[14*N:]
 
         slab.set_positions(p)
-        ghosts = np.ones(len(slab), dtype='int8')
+        ghosts = np.ones(len(slab), dtype='int32')
         ghosts[:N] = 0
         
         #print len(slab)-ghosts.sum(), N
         slab.set_calculator(calc)
         calc.set_ghosts(ghosts)
 
-    return -slab.get_potential_energy()
+    if "OPBC" in nbc:
+        repeat = (3,3,3)
+        slab = slab.repeat(repeat)
+        slab.set_calculator(calc)
+        factor = np.prod(repeat)
+
+    return -slab.get_potential_energy()/factor
 
 if __name__ == "__main__":
     #model = raw_input("modelname = ")
@@ -80,13 +88,16 @@ if __name__ == "__main__":
     #model = "Pair_Morse_Shifted_GirifalcoWeizer_MedCutoff_Cr__MO_245813471114_001"
     #model = "Three_Body_Stillinger_Weber_Balamane_Si__MO_113686039439_001"
     #model = "Tersoff_LAMMPS_Erhart_Albe_CSi__MO_903987585848_001"
+    #model = 'EDIP_BOP_Bazant_Kaxiras_Si__MO_958932894036_001'
+
+    #model = raw_input("Enter modelname = ")
 
     species = get_species(model)
     print "Running for species %r" % species
     
     result = {}
     for (sp,struct) in itertools.product(species, structures):
-        slab = generate_slab(sp, struct, 2)
+        slab = generate_slab(sp, struct, 3)
         for nbc in list_nbcs:
             print "Running", sp, struct, nbc
             try:
